@@ -1,0 +1,210 @@
+<html>
+<head>
+ MY CREATE
+ </head>
+ <br><br>
+
+ <style>
+
+
+body {
+    background-color: #121827;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    color: #00e5ff;
+}
+
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+}
+
+th {
+    background-color: #5b21b6;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    padding: 8px;
+    border: 1px solid #999;
+}
+
+input {
+    width: 100px;
+    padding: 6px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 6px;
+    border: none;
+    border-radius: 5px;
+    background-color: #06b6d4;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #67e8f9;
+}
+
+ </style>
+<body>
+<table border="1">
+ <thead>
+<tr>
+<label><th>Name</th></label>
+ <label><th>Tamil</th></label>
+<label><th>English</th></label>
+<label><th>Math</th></label>
+<label><th>Science</th></label>
+<label><th>Social Science</th></label>
+<th>Total</th>
+<th>Grade</th>
+<th>Percentage</th>
+<th>Delete</th>
+
+
+</tr>
+</thead>
+ <tr>
+<td><input id="N" type="text"></td>
+<td><input id="T" type="number"></td>
+<td><input id="E" type="number"></td>
+ <td><input id="M" type="number"></td>
+<td><input id="S" type="number"></td>
+<td><input id="SS" type="number"></td>
+<td></td>
+<td></td>
+<td></td>
+ <td></td>
+</tr>
+<tbody id="studentData"></tbody>
+ </table>
+ <button onclick="DeleteAll()">Delete All Students</button>
+<button onclick="AddStudent()">Add Student</button>
+<button onclick="Result()">Result</button>
+ <button onclick="Delete()">Delete</button>
+</body>
+<script>
+
+function AddStudent() {
+ var N = document.getElementById("N").value;
+ var T = Number(document.getElementById("T").value);
+var E = Number(document.getElementById("E").value);
+var M = Number(document.getElementById("M").value);
+ var S = Number(document.getElementById("S").value);
+var SS = Number(document.getElementById("SS").value);
+
+var to = T + E + M + S + SS;
+var per = to / 500 * 100;
+var grade;
+
+if (to >= 450) {
+    grade = "A";
+}
+else if (to >= 400) {
+    grade = "B";
+}
+else if (to >= 350) {
+    grade = "C";
+}
+else {
+    grade = "Fail";
+}
+
+ if (document.getElementById("T").value == "" ||
+document.getElementById("E").value == "" ||
+document.getElementById("M").value == "" ||
+document.getElementById("S").value == "" ||
+ document.getElementById("SS").value == "") {
+
+ alert("Enter all subject marks");
+ return;
+}
+
+ if (N =="") {
+ alert("Enter Student Name");
+return;
+ }
+if (T < 0 || T > 100||
+E < 0 || E > 100||
+ M < 0 || M > 100||
+S < 0 || S > 100||
+ SS < 0 || SS > 100){
+
+ alert("Mark must between 0 and 100");
+ return;
+ }
+var row = "<tr><td>" + N + "</td><td>" + T +
+"</td><td>" + E + "</td><td>" + M +
+"</td><td>" + S + "</td><td>" + SS +
+"</td><td>" + to + "/500</td>" +
+"<td>" + grade + "</td>" +
+"<td>" + per +"</td>" +
+"<td><button onclick='this.parentElement.parentElement.remove()'>Delete</button></td></tr>";
+
+
+
+ document.getElementById("studentData").innerHTML += row;
+ alert("Student Added Successfully!");
+}
+
+ function Result(){
+ var N=document.getElementById("N").value;
+var T=Number(document.getElementById("T").value);
+var E=Number(document.getElementById("E").value);
+ var M=Number(document.getElementById("M").value);
+ var S=Number(document.getElementById("S").value);
+ var SS=Number(document.getElementById("SS").value);
+ var to= T+E+M+S+SS;
+ var per= to/500*100;
+
+ if(to>=450){
+alert("A grade \ntotal:"+ to +"\n perchantage:"+ per +"%");
+
+
+ }
+else if(to>=400){
+ alert("B grade \ntotal:"+ to +"\n perchantage:"+ per +"%");
+
+ }
+ else if(to>=350){
+ alert("C grade \ntotal:"+ to +"\n perchantage:"+ per +"%");
+ }
+ else{
+alert("total:"+ to +"\n perchantage:"+ per +"%");
+ }
+}
+ 
+
+function Delete() {
+    document.getElementById("N").value = "";
+    document.getElementById("T").value = "";
+    document.getElementById("E").value = "";
+    document.getElementById("M").value = "";
+    document.getElementById("S").value = "";
+    document.getElementById("SS").value = "";
+
+}
+function DeleteAll(){
+    document.getElementById("studentData").innerHTML = "";
+    alert("All Students Deleted!");
+}
+
+
+    
+
+
+
+</script>
+</html>
